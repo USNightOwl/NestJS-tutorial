@@ -1,0 +1,16 @@
+###
+GET http://localhost:3000/songs
+
+###
+POST http://localhost:3000/songs
+Content-Type: application/json
+
+{
+  "title": "Lasting lover 2",
+  "artists": ["sigla"],
+  "releasedDate": "2024-04-01",
+  "duration": "07:46"
+}
+
+###
+GET http://localhost:3000/songs/1s

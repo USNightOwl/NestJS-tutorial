@@ -43,3 +43,14 @@ Content-Type: application/json
     "songs": [6],
     "user": 2
 }
+
+###
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+    "firstname": "Nguyen",
+    "lastname": "Hao",
+    "email": "haonhat@gmail.com",
+    "password": "123456"
+}

@@ -1,3 +1,4 @@
+import { Exclude } from "class-transformer";
 import { Playlist } from "src/playlists/playlist.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
@@ -12,11 +13,21 @@ export class User {
   @Column()
   lastName: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @Column()
+  @Exclude()
   password: string;
+
+  @Column({ nullable: true, type: "text" })
+  twoFASecret: string;
+
+  @Column({ default: false, type: "boolean" })
+  enable2FA: boolean;
+
+  @Column()
+  apiKey: string;
 
   @OneToMany(() => Playlist, (playList) => playList.user)
   playLists: Playlist[];

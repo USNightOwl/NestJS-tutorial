@@ -4,6 +4,7 @@ GET http://localhost:3000/songs
 ###
 POST http://localhost:3000/songs
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5ndXllbmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOjIsImFydGlzdElkIjoxLCJpYXQiOjE3MTIwNzU1NzUsImV4cCI6MTcxMjE2MTk3NX0.KzLiONiANEFrzfhFQbKe4omJ16-svVrGDpkCvyIEfG4
 
 {
     "title": "Die Alone",
@@ -50,8 +51,8 @@ Content-Type: application/json
 
 {
     "firstName": "Nguyen",
-    "lastName": "Hao",
-    "email": "haonhat@gmail.com",
+    "lastName": "Nhan",
+    "email": "nguyenhan@gmail.com",
     "password": "123456"
 }
 
@@ -65,5 +66,27 @@ Content-Type: application/json
 }
 
 ###
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "email": "nguyenhan@gmail.com",
+    "password": "123456"
+}
+
+###
 GET http://localhost:3000/profile
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imhhb25oYXRAZ21haWwuY29tIiwidXNlcklkIjoxLCJpYXQiOjE3MTIwNzQzMDAsImV4cCI6MTcxMjE2MDcwMH0.aD2Y66iT_csKK_meTa6hOFFKTkKb0VGuSyCjMZE15Es
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5ndXllbmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOjIsImFydGlzdElkIjoxLCJpYXQiOjE3MTIwNzU1MDEsImV4cCI6MTcxMjE2MTkwMX0.SABWHgarAFxUdfQv5D3XWFJ6jc0DkxvC9LSEGSHi0qM
+
+###
+GET http://localhost:3000/auth/enable-2fa
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5ndXllbmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOjIsImFydGlzdElkIjoxLCJpYXQiOjE3MTIwNzY0ODksImV4cCI6MTcxMjE2Mjg4OX0.zrwjUv9MHbmTkNwzWmIJmGHqvIBiCFTcOSA4JLnhA4g
+
+###
+POST http://localhost:3000/auth/validate-2fa
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5ndXllbmhhbkBnbWFpbC5jb20iLCJ1c2VySWQiOjIsImFydGlzdElkIjoxLCJpYXQiOjE3MTIwNzY0ODksImV4cCI6MTcxMjE2Mjg4OX0.zrwjUv9MHbmTkNwzWmIJmGHqvIBiCFTcOSA4JLnhA4g
+Content-Type: application/json
+
+{
+    "token": "993913"
+}

@@ -2,9 +2,12 @@ import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { LoginDTO } from "./dto/login.dto";
 import { UsersService } from "../users/users.service";
 import * as bcrypt from "bcrypt";
-import { PayloadType } from "./types";
+import { Enable2FAType, PayloadType } from "./types";
 import { ArtistsService } from "../artists/artists.service";
 import { JwtService } from "@nestjs/jwt";
+
+import * as speakeasy from "speakeasy";
+import { UpdateResult } from "typeorm";
 
 @Injectable()
 export class AuthService {
@@ -46,5 +49,39 @@ export class AuthService {
     } else {
       throw new UnauthorizedException("Password does not match");
     }
+  }
+
+  async enable2FA(userId: number): Promise<Enable2FAType> {
+    const user = await this.userService.findById(userId);
+    if (user.enable2FA) {
+      return { secret: user.twoFASecret };
+    }
+
+    const secret = speakeasy.generateSecret();
+    console.log(secret);
+    user.twoFASecret = secret.base32;
+    await this.userService.updateSecretKey(user.id, user.twoFASecret);
+    return { secret: user.twoFASecret };
+  }
+
+  async validate2FAToken(
+    userId: number,
+    token: string,
+  ): Promise<{ verified: boolean }> {
+    try {
+      const user = await this.userService.findById(userId);
+
+      const verified = speakeasy.totp.verify({
+        secret: user.twoFASecret,
+        token: token,
+        encoding: "base32",
+      });
+      return { verified };
+    } catch (error) {
+      throw new UnauthorizedException("Error verifying token");
+    }
+  }
+  async disable2FA(userId: number): Promise<UpdateResult> {
+    return this.userService.disable2FA(userId);
   }
 }

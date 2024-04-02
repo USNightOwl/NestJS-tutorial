@@ -49,8 +49,17 @@ POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-    "firstname": "Nguyen",
-    "lastname": "Hao",
+    "firstName": "Nguyen",
+    "lastName": "Hao",
+    "email": "haonhat@gmail.com",
+    "password": "123456"
+}
+
+###
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
     "email": "haonhat@gmail.com",
     "password": "123456"
 }

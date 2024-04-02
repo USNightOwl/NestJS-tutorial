@@ -15,3 +15,7 @@ Content-Type: application/json
   "email": "haonhat2729@gmail.com",
   "password": "12345678"
 }
+
+###
+GET http://localhost:3002/users/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiaGFvbmhhdDI3MjlAZ21haWwuY29tIiwiaWF0IjoxNzEyMDQ5NDA5LCJleHAiOjE3MTIwNTAwMDl9.VUt9rYbJH9tZyv2897PcxUE1qDr4gY3gxRRQnPSjRB0

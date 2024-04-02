@@ -1,14 +1,18 @@
 import {
   Body,
   Controller,
+  DefaultValuePipe,
   Get,
-  HttpException,
   HttpStatus,
+  Param,
+  ParseIntPipe,
   Post,
+  Query,
 } from "@nestjs/common";
 import { SongsService } from "./songs.service";
 import { CreateSongDTO } from "./dto/create-song-dto";
 import { Song } from "./song.entity";
+import { Pagination } from "nestjs-typeorm-paginate";
 
 @Controller("songs")
 export class SongsController {
@@ -19,15 +23,27 @@ export class SongsController {
   }
 
   @Get()
-  findAll() {
-    try {
-      return "hello";
-    } catch (error) {
-      throw new HttpException(
-        "server error",
-        HttpStatus.INTERNAL_SERVER_ERROR,
-        { cause: error },
-      );
-    }
+  findAll(
+    @Query("page", new DefaultValuePipe(1), ParseIntPipe)
+    page: number = 1,
+    @Query("limit", new DefaultValuePipe(10), ParseIntPipe)
+    limit: number = 10,
+  ): Promise<Pagination<Song>> {
+    limit = limit > 100 ? 100 : limit;
+    return this.songsService.paginate({
+      page,
+      limit,
+    });
+  }
+
+  @Get(":id")
+  findOne(
+    @Param(
+      "id",
+      new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
+    )
+    id: number,
+  ): Promise<Song> {
+    return this.songsService.findOne(id);
   }
 }

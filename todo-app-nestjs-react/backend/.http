@@ -8,7 +8,7 @@ Content-Type: application/json
 {
   "firstName": "Nguyen",
   "lastName": "Hao",
-  "email": "haonhat@gmail.com",
+  "email": "haonhat12@gmail.com",
   "password": "12345"
 }
 
@@ -25,6 +25,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3002/todo/findAllNotCompleted/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImZpcnN0TmFtZSI6Ik5ndXllbiIsImxhc3ROYW1lIjoiSGFvIiwiZW1haWwiOiJoYW9uaGF0QGdtYWlsLmNvbSIsInJvbGUiOiJOT1JNQUxfVVNFUl9ST0xFIiwiaWF0IjoxNzEyMTM5MzQ0LCJleHAiOjE3MTIxNDI5NDR9.T6Lai45DNv4PtE2vyIggd34G8ujlwJ6K7YnGCNLGcgY
 
 ###
 GET http://localhost:3002/todo/findAllCompleted/1

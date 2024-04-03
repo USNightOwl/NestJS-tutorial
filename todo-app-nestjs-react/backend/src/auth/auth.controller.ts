@@ -1,10 +1,11 @@
 import { Controller, Post, Req, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { User } from '../user/entities/user.entity';
+import { JwtService } from '@nestjs/jwt';
 
 @Controller('auth')
 export class AuthController {
-  constructor() {}
+  constructor(private jwtService: JwtService) {}
 
   @Post('/login')
   @UseGuards(AuthGuard('local'))
@@ -18,6 +19,6 @@ export class AuthController {
       role: user.role,
     };
 
-    return payload;
+    return { token: this.jwtService.sign(payload) };
   }
 }

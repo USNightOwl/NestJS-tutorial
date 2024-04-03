@@ -25,14 +25,18 @@ export class UserService {
   }
 
   findAll() {
-    return `This action returns all user`;
+    return this.userRepo.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  findUserById(id: number) {
+    return this.userRepo.findOneOrFail({ where: { id } });
+  }
+
+  findUserByEmail(email: string) {
+    return this.userRepo.findOneOrFail({ where: { email } });
   }
 
   remove(id: number) {
-    return `This action removes a #${id} user`;
+    return this.userRepo.delete(id);
   }
 }

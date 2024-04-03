@@ -11,3 +11,14 @@ Content-Type: application/json
   "email": "haonhat@gmail.com",
   "password": "12345"
 }
+
+###
+GET http://localhost:3002/user
+
+###
+POST http://localhost:3002/todo/1
+Content-Type: application/json
+
+{
+  "title": "Study NestJS"
+}

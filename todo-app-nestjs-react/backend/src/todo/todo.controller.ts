@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { TodoService } from './todo.service';
 import { CreateTodoDto } from './dto/create-todo.dto';
@@ -15,9 +16,12 @@ import { UpdateTodoDto } from './dto/update-todo.dto';
 export class TodoController {
   constructor(private readonly todoService: TodoService) {}
 
-  @Post()
-  create(@Body() createTodoDto: CreateTodoDto) {
-    return this.todoService.create(createTodoDto);
+  @Post(':userId')
+  create(
+    @Body() createTodoDto: CreateTodoDto,
+    @Param('userId', ParseIntPipe) userId: number,
+  ) {
+    return this.todoService.create(createTodoDto, userId);
   }
 
   @Get()

@@ -8,6 +8,7 @@ import { JwtService } from "@nestjs/jwt";
 
 import * as speakeasy from "speakeasy";
 import { UpdateResult } from "typeorm";
+import { ConfigService } from "@nestjs/config";
 
 @Injectable()
 export class AuthService {
@@ -15,6 +16,7 @@ export class AuthService {
     private userService: UsersService,
     private artistsService: ArtistsService,
     private jwtService: JwtService,
+    private configService: ConfigService,
   ) {}
   async login(
     loginDTO: LoginDTO,
@@ -83,5 +85,9 @@ export class AuthService {
   }
   async disable2FA(userId: number): Promise<UpdateResult> {
     return this.userService.disable2FA(userId);
+  }
+
+  getEnvVariable() {
+    return this.configService.get<number>("port");
   }
 }

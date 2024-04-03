@@ -90,3 +90,6 @@ Content-Type: application/json
 {
     "token": "993913"
 }
+
+###
+GET http://localhost:3000/auth/test

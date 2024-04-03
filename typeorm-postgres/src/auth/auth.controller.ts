@@ -63,4 +63,9 @@ export class AuthController {
   ): Promise<UpdateResult> {
     return this.authService.disable2FA(req.user.userId);
   }
+
+  @Get("test")
+  testEnvVariable() {
+    return this.authService.getEnvVariable();
+  }
 }

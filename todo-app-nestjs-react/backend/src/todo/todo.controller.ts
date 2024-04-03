@@ -10,7 +10,6 @@ import {
 } from '@nestjs/common';
 import { TodoService } from './todo.service';
 import { CreateTodoDto } from './dto/create-todo.dto';
-import { UpdateTodoDto } from './dto/update-todo.dto';
 
 @Controller('todo')
 export class TodoController {
@@ -24,23 +23,25 @@ export class TodoController {
     return this.todoService.create(createTodoDto, userId);
   }
 
-  @Get()
-  findAll() {
-    return this.todoService.findAll();
+  @Get('/findAllNotCompleted/:userId')
+  findAllTodosByUserIdNotCompleted(
+    @Param('userId', ParseIntPipe) userId: number,
+  ) {
+    return this.todoService.findAllTodosByUserIdNotCompleted(userId);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.todoService.findOne(+id);
+  @Get('/findAllCompleted/:userId')
+  findAllTodosByUserIdCompleted(@Param('userId', ParseIntPipe) userId: number) {
+    return this.todoService.findAllTodosByUserIdCompleted(userId);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateTodoDto: UpdateTodoDto) {
-    return this.todoService.update(+id, updateTodoDto);
+  update(@Param('id', ParseIntPipe) id: number) {
+    return this.todoService.update(id);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.todoService.remove(+id);
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.todoService.remove(id);
   }
 }

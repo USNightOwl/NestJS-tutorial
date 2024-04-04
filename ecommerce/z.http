@@ -29,3 +29,10 @@ Content-Type: application/json
 ###
 GET http://localhost:3000/api/v1/users/all
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJ0cm9uZ25oYW5AZ21haWwuY29tIiwiaWF0IjoxNzEyMTk3OTc0LCJleHAiOjE3MTIyODQzNzR9.5xzLcDGc6UUqc5o4UeEBJbx2UgH7RhJxerdF5nSfX08
+
+###
+GET http://localhost:3000/api/v1/users/single/2
+
+###
+GET http://localhost:3000/api/v1/users/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJ0cm9uZ25oYW5AZ21haWwuY29tIiwiaWF0IjoxNzEyMjI0MjUyLCJleHAiOjE3MTIzMTA2NTJ9.eyr1G6b3EGgPwjNgnf94NC2d4x62yH4ZG09Gc_3JjE0

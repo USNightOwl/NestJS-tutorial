@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Query } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
@@ -8,6 +8,8 @@ import { Roles } from 'src/utils/common/user-roles.enum';
 import { CurrentUser } from 'src/utils/decorators/current-user.decorator';
 import { Product } from './entities/product.entity';
 import { User } from 'src/users/entities/user.entity';
+import { SerializeIncludes } from 'src/utils/interceptors/serialize.interceptor';
+import { ProductsDto } from './dto/products.dto';
 
 @Controller('products')
 export class ProductsController {
@@ -22,9 +24,10 @@ export class ProductsController {
     return this.productsService.create(createProductDto, currentUser);
   }
 
+  @SerializeIncludes(ProductsDto)
   @Get()
-  findAll() {
-    return this.productsService.findAll();
+  async findAll(@Query() query: any): Promise<ProductsDto> {
+    return await this.productsService.findAll(query);
   }
 
   @Get(':id')

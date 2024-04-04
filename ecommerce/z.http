@@ -66,10 +66,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiO
 Content-Type: application/json
 
 {
-  "title": "Samsung S12 Utra",
-  "description": "this is samsung product",
-  "price": 100.55,
-  "stock": 123,
-  "images": ["anh1", "anh2", "anh3", "anh4"],
-  "categoryId": 1
+  "title": "iPhone 14 pro max",
+  "description": "this is apple product",
+  "price": 112.5,
+  "stock": 100,
+  "images": ["janh1", "janh2", "janh3"],
+  "categoryId": 2
 }
+
+###
+GET http://localhost:3000/api/v1/products?limit=1&

@@ -86,5 +86,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiO
 Content-Type: application/json
 
 {
-  
+  "title": "Samsung s12 utra update"
 }
+
+###
+DELETE http://localhost:3000/api/v1/products/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0cm9uZ25oYW5AZ21haWwuY29tIiwiaWF0IjoxNzEyMjI1NTM5LCJleHAiOjE3MTIzMTE5Mzl9.5yN8EapabXDaCyb7PP6hLFfC1f7mi06BggchuNFGq7Q

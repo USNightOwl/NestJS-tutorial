@@ -147,6 +147,21 @@ export class OrdersService {
     return `This action removes a #${id} order`;
   }
 
+  async cancelled(id: number, currentUser: User) {
+    let order = await this.findOne(id);
+    if (!order) throw new NotFoundException('Order Not Found.');
+
+    if (order.status === OrderStatus.CANCELLED) return order;
+    if (order.status !== OrderStatus.DELIVERED)
+      throw new BadRequestException('Only canceled after delivery order');
+
+    order.status = OrderStatus.CANCELLED;
+    order.updatedBy = currentUser;
+    order = await this.orderRepository.save(order);
+    await this.stockUpdate(order, OrderStatus.CANCELLED);
+    return order;
+  }
+
   async stockUpdate(order: Order, status: string) {
     for (const op of order.products) {
       await this.productService.updateStock(

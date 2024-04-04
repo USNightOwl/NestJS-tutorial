@@ -6,18 +6,27 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { OrdersService } from './orders.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
+import { AuthenticationGuard } from 'src/utils/guards/authentication.guard';
+import { CurrentUser } from 'src/utils/decorators/current-user.decorator';
+import { User } from 'src/users/entities/user.entity';
+import { Order } from './entities/order.entity';
 
 @Controller('orders')
 export class OrdersController {
   constructor(private readonly ordersService: OrdersService) {}
 
+  @UseGuards(AuthenticationGuard)
   @Post()
-  create(@Body() createOrderDto: CreateOrderDto) {
-    return this.ordersService.create(createOrderDto);
+  async create(
+    @Body() createOrderDto: CreateOrderDto,
+    @CurrentUser() currentUser: User,
+  ): Promise<Order> {
+    return await this.ordersService.create(createOrderDto, currentUser);
   }
 
   @Get()

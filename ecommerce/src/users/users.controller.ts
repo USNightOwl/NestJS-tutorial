@@ -1,8 +1,9 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get, UseGuards } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UserSignUpDTO } from './dto/user-signup.dto';
 import { User } from './entities/user.entity';
 import { UserSignInDTO } from './dto/user-signin.dto';
+import { AuthenticationGuard } from 'src/utils/guards/authentication.guard';
 
 @Controller('users')
 export class UsersController {
@@ -21,5 +22,11 @@ export class UsersController {
     const accessToken = await this.usersService.accessToken(user);
 
     return { accessToken, user };
+  }
+
+  @UseGuards(AuthenticationGuard)
+  @Get('all')
+  async findAll(): Promise<User[]> {
+    return await this.usersService.findAll();
   }
 }

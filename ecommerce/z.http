@@ -3,7 +3,20 @@ POST http://localhost:3000/api/v1/users/signup
 Content-Type: application/json
 
 {
-  "name": "Nguyen Nhat Hao",
+  "name": "Nguyen Trong Nhan",
+  "email": "trongnhan@gmail.com",
+  "password": "12345678"
+}
+
+###
+POST http://localhost:3000/api/v1/users/signin
+Content-Type: application/json
+
+{
   "email": "haonhat@gmail.com",
   "password": "12345678"
 }
+
+###
+GET http://localhost:3000/api/v1/users/all
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJoYW9uaGF0QGdtYWlsLmNvbSIsImlhdCI6MTcxMjE5NjgwNCwiZXhwIjoxNzEyMjgzMjA0fQ.9HNQHmQXNQT7vfkJ0CHoEdXSP3k8ZwheaM9lzh4a1w8

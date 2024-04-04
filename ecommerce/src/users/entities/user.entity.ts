@@ -1,4 +1,5 @@
 import { Category } from 'src/categories/entities/category.entity';
+import { Order } from 'src/orders/entities/order.entity';
 import { Product } from 'src/products/entities/product.entity';
 import { Roles } from 'src/utils/common/user-roles.enum';
 import {
@@ -43,4 +44,12 @@ export class User {
   // one user can create a new product (one to many)
   @OneToMany(() => Product, (prod) => prod.addedBy)
   products: Product[];
+
+  // one user can create new orders (one to many)
+  @OneToMany(() => Order, (order) => order.user)
+  orders: Order[];
+
+  // one (other) user can update order (one to many)
+  @OneToMany(() => Order, (order) => order.updatedBy)
+  ordersUpdateBy: User[];
 }

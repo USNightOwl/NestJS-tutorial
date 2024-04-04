@@ -1,5 +1,6 @@
 import { Category } from 'src/categories/entities/category.entity';
 import { OrdersProductsEntity } from 'src/orders/entities/orders-products.entity';
+import { Review } from 'src/reviews/entities/review.entity';
 import { User } from 'src/users/entities/user.entity';
 import {
   Column,
@@ -50,4 +51,8 @@ export class Product {
 
   @OneToMany(() => OrdersProductsEntity, (op) => op.product)
   products: OrdersProductsEntity[];
+
+  // one product can have multiple review (one to many)
+  @OneToMany(() => Review, (rev) => rev.product)
+  reviews: Review[];
 }

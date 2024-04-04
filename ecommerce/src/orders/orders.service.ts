@@ -143,10 +143,6 @@ export class OrdersService {
     return order;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} order`;
-  }
-
   async cancelled(id: number, currentUser: User) {
     let order = await this.findOne(id);
     if (!order) throw new NotFoundException('Order Not Found.');

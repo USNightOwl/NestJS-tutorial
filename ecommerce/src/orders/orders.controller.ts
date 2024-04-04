@@ -4,7 +4,6 @@ import {
   Post,
   Body,
   Param,
-  Delete,
   UseGuards,
   Put,
 } from '@nestjs/common';
@@ -59,10 +58,5 @@ export class OrdersController {
   @UseGuards(AuthenticationGuard, AuthorizeGuard([Roles.ADMIN]))
   async cancelled(@Param('id') id: string, @CurrentUser() currentUser: User) {
     return await this.ordersService.cancelled(+id, currentUser);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.ordersService.remove(+id);
   }
 }

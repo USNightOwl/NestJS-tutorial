@@ -12,7 +12,7 @@ export const dataSourceOptions: DataSourceOptions = {
   entities: ['dist/**/*.entity{.ts,.js}'],
   migrations: ['dist/db/migrations/*{.ts,.js}'],
   logging: false,
-  synchronize: true,
+  synchronize: false, // false disable update database, else
 };
 
 const dataSource = new DataSource(dataSourceOptions);

@@ -6,9 +6,10 @@ import { CurrentUserMiddleware } from './utils/middlewares/current-user.middlewa
 import { CategoriesModule } from './categories/categories.module';
 import { ProductsModule } from './products/products.module';
 import { OrdersModule } from './orders/orders.module';
+import { ReviewsModule } from './reviews/reviews.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(dataSourceOptions), UsersModule, CategoriesModule, ProductsModule, OrdersModule],
+  imports: [TypeOrmModule.forRoot(dataSourceOptions), UsersModule, CategoriesModule, ProductsModule, OrdersModule, ReviewsModule],
   controllers: [],
   providers: [],
 })

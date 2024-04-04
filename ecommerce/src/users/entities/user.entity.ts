@@ -1,6 +1,7 @@
 import { Category } from 'src/categories/entities/category.entity';
 import { Order } from 'src/orders/entities/order.entity';
 import { Product } from 'src/products/entities/product.entity';
+import { Review } from 'src/reviews/entities/review.entity';
 import { Roles } from 'src/utils/common/user-roles.enum';
 import {
   Column,
@@ -52,4 +53,8 @@ export class User {
   // one (other) user can update order (one to many)
   @OneToMany(() => Order, (order) => order.updatedBy)
   ordersUpdateBy: User[];
+
+  // one user can create multiple review (one to many)
+  @OneToMany(() => Review, (rev) => rev.user)
+  reviews: Review[];
 }

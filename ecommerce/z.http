@@ -120,3 +120,15 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3000/api/v1/orders
+
+###
+GET http://localhost:3000/api/v1/orders/8
+
+###
+PUT http://localhost:3000/api/v1/orders/8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0cm9uZ25oYW5AZ21haWwuY29tIiwiaWF0IjoxNzEyMjI1NTM5LCJleHAiOjE3MTIzMTE5Mzl9.5yN8EapabXDaCyb7PP6hLFfC1f7mi06BggchuNFGq7Q
+Content-Type: application/json
+
+{
+  "status": "shipped"
+}

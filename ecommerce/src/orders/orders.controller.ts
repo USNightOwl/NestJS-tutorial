@@ -30,12 +30,12 @@ export class OrdersController {
   }
 
   @Get()
-  findAll() {
-    return this.ordersService.findAll();
+  async findAll(): Promise<Order[]> {
+    return await this.ordersService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id') id: string): Promise<Order> {
     return this.ordersService.findOne(+id);
   }
 

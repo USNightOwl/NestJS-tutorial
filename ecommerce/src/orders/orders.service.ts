@@ -68,8 +68,14 @@ export class OrdersService {
     return await this.findOne(orderTbl.id);
   }
 
-  findAll() {
-    return `This action returns all orders`;
+  async findAll(): Promise<Order[]> {
+    return await this.orderRepository.find({
+      relations: {
+        shippingAddress: true,
+        user: true,
+        products: { product: true },
+      },
+    });
   }
 
   async findOne(id: number): Promise<Order> {

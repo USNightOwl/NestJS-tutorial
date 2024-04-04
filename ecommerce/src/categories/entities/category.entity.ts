@@ -1,9 +1,11 @@
+import { Product } from 'src/products/entities/product.entity';
 import { User } from 'src/users/entities/user.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   Timestamp,
   UpdateDateColumn,
@@ -31,4 +33,8 @@ export class Category {
   // one user can add a new category (many to one)
   @ManyToOne(() => User, (user) => user.categories)
   addedBy: User;
+
+  // one category can have many product (one product have one categogy) (one to many)
+  @OneToMany(() => Product, (prod) => prod.category)
+  products: Product[];
 }

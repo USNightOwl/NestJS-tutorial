@@ -48,6 +48,11 @@ export class ProductsService {
       .getRepository(Product) // from Product
       .createQueryBuilder('product') // as product
       .leftJoinAndSelect('product.category', 'category') // LEFT JOIN category category ON product.category = category (+ SELECT category.*)
+      .leftJoin('product.reviews', 'review')
+      .addSelect([
+        'COUNT(review.id) AS reviewCount',
+        'AVG(review.ratings)::numeric(10,2) AS avgRating',
+      ])
       .groupBy('product.id,category.id');
 
     const totalProducts = await queryBuilder.getCount();

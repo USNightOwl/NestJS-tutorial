@@ -30,6 +30,11 @@ export class EventsGateway implements OnModuleInit {
     console.log('Message from client: ' + data.msg);
 
     // emit ('message')
+    this.server.emit('message_response', {
+      data: 'hello world',
+    });
+
+    // or (only return)
     return of({
       event: 'message',
       data: 'MESSAGE RETURNED FROM SERVER: Hello',

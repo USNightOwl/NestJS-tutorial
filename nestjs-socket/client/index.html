@@ -24,6 +24,10 @@
         console.log('event ', data);
       })
 
+      socket.on('message_response', function (data) {
+        console.log('event message_response', data.data);
+      })
+
       socket.on('exception', function (data) {
         console.log('event', data);
       });

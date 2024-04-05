@@ -1,6 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateReviewDto } from './dto/create-review.dto';
-import { UpdateReviewDto } from './dto/update-review.dto';
 import { Review } from './entities/review.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -15,7 +14,10 @@ export class ReviewsService {
     private readonly productService: ProductsService,
   ) {}
 
-  async create(createReviewDto: CreateReviewDto, currentUser: User): Promise<Review> {
+  async create(
+    createReviewDto: CreateReviewDto,
+    currentUser: User,
+  ): Promise<Review> {
     const product = await this.productService.findOne(
       +createReviewDto.productId,
     );
@@ -82,11 +84,9 @@ export class ReviewsService {
     });
   }
 
-  update(id: number, updateReviewDto: UpdateReviewDto) {
-    return `This action updates a #${id} review`;
-  }
+  async remove(id: number) {
+    const review = await this.findOne(id);
 
-  remove(id: number) {
-    return `This action removes a #${id} review`;
+    return this.reviewRepository.remove(review);
   }
 }

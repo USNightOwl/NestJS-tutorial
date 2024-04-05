@@ -1,11 +1,20 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  UseGuards,
+} from '@nestjs/common';
 import { ReviewsService } from './reviews.service';
 import { CreateReviewDto } from './dto/create-review.dto';
-import { UpdateReviewDto } from './dto/update-review.dto';
 import { AuthenticationGuard } from 'src/utils/guards/authentication.guard';
 import { CurrentUser } from 'src/utils/decorators/current-user.decorator';
 import { User } from 'src/users/entities/user.entity';
 import { Review } from './entities/review.entity';
+import { AuthorizeGuard } from 'src/utils/guards/authorization.guard';
+import { Roles } from 'src/utils/common/user-roles.enum';
 
 @Controller('reviews')
 export class ReviewsController {
@@ -32,11 +41,7 @@ export class ReviewsController {
     return this.reviewsService.findOne(+id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateReviewDto: UpdateReviewDto) {
-    return this.reviewsService.update(+id, updateReviewDto);
-  }
-
+  @UseGuards(AuthenticationGuard, AuthorizeGuard([Roles.ADMIN]))
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.reviewsService.remove(+id);

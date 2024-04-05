@@ -58,12 +58,28 @@ export class ReviewsService {
     });
   }
 
-  findAll() {
-    return `This action returns all reviews`;
+  async findAllByProduct(id: number): Promise<Review[]> {
+    return await this.reviewRepository.find({
+      where: { product: { id } },
+      relations: {
+        user: true,
+        product: {
+          category: true,
+        },
+      },
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} review`;
+  findOne(id: number): Promise<Review> {
+    return this.reviewRepository.findOne({
+      where: { id },
+      relations: {
+        user: true,
+        product: {
+          category: true,
+        },
+      },
+    });
   }
 
   update(id: number, updateReviewDto: UpdateReviewDto) {

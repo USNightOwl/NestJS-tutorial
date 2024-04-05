@@ -40,7 +40,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiO
 
 ###
 POST http://localhost:3000/api/v1/categories
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0cm9uZ25oYW5AZ21haWwuY29tIiwiaWF0IjoxNzEyMjI1NTM5LCJleHAiOjE3MTIzMTE5Mzl9.5yN8EapabXDaCyb7PP6hLFfC1f7mi06BggchuNFGq7Q
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0cm9uZ25oYW5AZ21haWwuY29tIiwiaWF0IjoxNzEyMjc5Nzg2LCJleHAiOjE3MTIzNjYxODZ9.skhDHTa9AHIvVWFqp2pqu1ArUWoGwz7jVGKFFBquWUU
 Content-Type: application/json
 
 {
@@ -62,7 +62,7 @@ Content-Type: application/json
 
 ###
 POST http://localhost:3000/api/v1/products
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0cm9uZ25oYW5AZ21haWwuY29tIiwiaWF0IjoxNzEyMjI1NTM5LCJleHAiOjE3MTIzMTE5Mzl9.5yN8EapabXDaCyb7PP6hLFfC1f7mi06BggchuNFGq7Q
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0cm9uZ25oYW5AZ21haWwuY29tIiwiaWF0IjoxNzEyMjc5Nzg2LCJleHAiOjE3MTIzNjYxODZ9.skhDHTa9AHIvVWFqp2pqu1ArUWoGwz7jVGKFFBquWUU
 Content-Type: application/json
 
 {
@@ -71,7 +71,7 @@ Content-Type: application/json
   "price": 112.5,
   "stock": 100,
   "images": ["janh1", "janh2", "janh3"],
-  "categoryId": 2
+  "categoryId": 1
 }
 
 ###
@@ -136,3 +136,25 @@ Content-Type: application/json
 ###
 PUT http://localhost:3000/api/v1/orders/cancel/8
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0cm9uZ25oYW5AZ21haWwuY29tIiwiaWF0IjoxNzEyMjI1NTM5LCJleHAiOjE3MTIzMTE5Mzl9.5yN8EapabXDaCyb7PP6hLFfC1f7mi06BggchuNFGq7Q
+
+###
+POST http://localhost:3000/api/v1/reviews
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0cm9uZ25oYW5AZ21haWwuY29tIiwiaWF0IjoxNzEyMjc5Nzg2LCJleHAiOjE3MTIzNjYxODZ9.skhDHTa9AHIvVWFqp2pqu1ArUWoGwz7jVGKFFBquWUU
+Content-Type: application/json
+
+{
+  "productId": 1,
+  "ratings": 3,
+  "comment": "good job bro"
+}
+
+###
+GET http://localhost:3000/api/v1/reviews
+Content-Type: application/json
+
+{
+  "productId": 1
+}
+
+###
+GET http://localhost:3000/api/v1/reviews/1

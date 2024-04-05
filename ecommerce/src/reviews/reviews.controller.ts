@@ -13,20 +13,22 @@ export class ReviewsController {
 
   @UseGuards(AuthenticationGuard)
   @Post()
-  create(
+  async create(
     @Body() createReviewDto: CreateReviewDto,
     @CurrentUser() currentUser: User,
   ): Promise<Review> {
-    return this.reviewsService.create(createReviewDto, currentUser);
+    return await this.reviewsService.create(createReviewDto, currentUser);
   }
 
   @Get()
-  findAll() {
-    return this.reviewsService.findAll();
+  async findAllByProduct(
+    @Body('productId') productId: number,
+  ): Promise<Review[]> {
+    return await this.reviewsService.findAllByProduct(+productId);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string): Promise<Review> {
     return this.reviewsService.findOne(+id);
   }
 

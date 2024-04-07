@@ -13,9 +13,9 @@ export class SongResolver {
     return this.songService.create(createSongInput);
   }
 
-  @Query(() => [Song], { name: 'song' })
-  findAll() {
-    return this.songService.findAll();
+  @Query(() => [Song], { name: 'songs' })
+  async getSongs() {
+    return this.songService.getSongs();
   }
 
   @Query(() => Song, { name: 'song' })

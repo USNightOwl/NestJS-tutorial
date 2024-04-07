@@ -8,7 +8,7 @@ export class SongService {
     return 'This action adds a new song';
   }
 
-  findAll() {
+  getSongs() {
     return `This action returns all song`;
   }
 

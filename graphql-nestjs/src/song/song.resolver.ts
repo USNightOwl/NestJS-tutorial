@@ -3,6 +3,7 @@ import { SongService } from './song.service';
 import { Song } from './entities/song.entity';
 import { UpdateSongDTO } from './dto/update-song.dto';
 import { CreateSongDTO } from './dto/create-song.dto';
+import { GraphQLError } from 'graphql';
 
 @Resolver(() => Song)
 export class SongResolver {
@@ -28,6 +29,11 @@ export class SongResolver {
 
   @Query(() => [Song], { name: 'songs' })
   async getSongs() {
+    throw new GraphQLError('Unable to fetch the songs', {
+      extensions: {
+        code: 'INTERNAL_SERVER_ERROR',
+      },
+    });
     return this.songService.getSongs();
   }
 

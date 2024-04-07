@@ -1,16 +1,29 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { SongService } from './song.service';
 import { Song } from './entities/song.entity';
-import { CreateSongInput } from './dto/create-song.input';
-import { UpdateSongInput } from './dto/update-song.input';
+import { UpdateSongDTO } from './dto/update-song.dto';
+import { CreateSongDTO } from './dto/create-song.dto';
 
 @Resolver(() => Song)
 export class SongResolver {
   constructor(private readonly songService: SongService) {}
 
+  @Mutation('createSong')
+  async createSong(@Args('createSongInput') args: CreateSongDTO) {
+    return this.songService.createSong(args);
+  }
+
   @Mutation(() => Song)
-  createSong(@Args('createSongInput') createSongInput: CreateSongInput) {
-    return this.songService.create(createSongInput);
+  updateSong(
+    @Args('updateSongInput') args: UpdateSongDTO,
+    @Args('id') id: string,
+  ) {
+    return this.songService.updateSong(id, args);
+  }
+
+  @Mutation(() => Song)
+  async deleteSong(@Args('id') id: string) {
+    return this.songService.deleteSong(id);
   }
 
   @Query(() => [Song], { name: 'songs' })
@@ -19,17 +32,7 @@ export class SongResolver {
   }
 
   @Query(() => Song, { name: 'song' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
-    return this.songService.findOne(id);
-  }
-
-  @Mutation(() => Song)
-  updateSong(@Args('updateSongInput') updateSongInput: UpdateSongInput) {
-    return this.songService.update(updateSongInput.id, updateSongInput);
-  }
-
-  @Mutation(() => Song)
-  deleteSong(@Args('id', { type: () => Int }) id: number) {
-    return this.songService.remove(id);
+  findOne(@Args('id') id: string) {
+    return this.songService.getSong(id);
   }
 }

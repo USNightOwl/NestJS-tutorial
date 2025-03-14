@@ -1,0 +1,1 @@
+CREATE INDEX "userIdIndex" ON "usersToGroups" USING btree ("userId");

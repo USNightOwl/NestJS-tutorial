@@ -9,7 +9,7 @@ Content-Type: application/json
   "firstName": "Nguyen",
   "lastName": "Hao",
   "email": "haonhat12@gmail.com",
-  "password": "12345"
+  "password": "12s345"
 }
 
 ###

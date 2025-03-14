@@ -3,7 +3,7 @@ POST http://localhost:3000/songs
 Content-Type: application/json
 
 {
-    "title": "New song",
+    "title": "New song 2",
     "releasedDate" : "2023-05-11",
     "duration" :"02:33",
     "lyrics": "1adas adsdasd asdasdasd qeqew"
@@ -17,3 +17,15 @@ GET http://localhost:3000/songs/66142e74f2cb0f1a1e15a5ee
 
 ###
 DELETE http://localhost:3000/songs/66142e74f2cb0f1a1e15a5ee
+
+###
+GET http://localhost:3000/albums
+
+###
+POST http://localhost:3000/albums
+Content-Type: application/json
+
+{
+  "title": "my first album",
+  "songs": ["661431e1be8bea8ed5dd0e27"]
+}
